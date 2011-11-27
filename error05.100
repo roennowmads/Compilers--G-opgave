@@ -1,0 +1,10 @@
+/* error05.100 */
+/* Adding two pointers */
+
+int main()
+{
+  int *a;
+  a = walloc(100);
+  a + a;
+  return 0;
+}

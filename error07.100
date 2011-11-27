@@ -1,0 +1,10 @@
+/* error07.100 */
+/* Subtracting pointer from integer */
+
+int main()
+{
+  int *a;
+  a = walloc(100);
+  100 - a;
+  return 0;
+}

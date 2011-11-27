@@ -1,0 +1,14 @@
+/* error01.100 */
+/* Repeated declaration of function */
+
+int main()
+{
+  putint(getchar());
+  return 0;
+}
+
+int main(int x)
+{
+  putint(x);
+  return 42;
+}

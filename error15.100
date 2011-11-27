@@ -1,0 +1,8 @@
+/* error15.100 */
+/* Return statement returns wrong type */
+
+int main()
+{
+  while (1<2) return 1;
+  return "not an integer";
+}

@@ -1,0 +1,14 @@
+/* error03.100 */
+/* No main function */
+
+int g()
+{
+  f(getchar());
+  return 0;
+}
+
+int f(int x)
+{
+  putint(x);
+  return 42;
+}

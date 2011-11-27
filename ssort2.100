@@ -1,0 +1,44 @@
+/* ssort2.100 -- bubble sort of string using pointer arithmetic  */
+/* reads a string */
+/* then prints the string with sorted characters */
+
+int main()
+{
+  int n;
+  char *a;
+
+  a = getstring(100);
+  n = strlen(a);
+  sort (a, n);
+  putstring(a);
+  return 0;
+}
+
+int sort(char *a; int n)
+{
+  char t, *b, *c;
+
+  c = a + n - 1;
+  while (a<c) {
+    b = a;
+    while (b<c) {
+      if (b[1] < b*) {
+        t = b*;
+	b* = b[1];
+	b[1] = t;
+      }
+      b = b+1;
+    }
+    c = c-1;
+  }
+  return 0;
+}
+
+int strlen(char *a)
+{
+  int i;
+
+  i = 0;
+  while (0<a[i]) i = i + 1;
+  return i;
+}
