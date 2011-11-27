@@ -24,7 +24,10 @@
        | "then"         => Parser.THEN pos
        | "else"         => Parser.ELSE pos
        | "int"          => Parser.INT pos
+	   (*| "char"         => Parser.CHAR pos 
+	   | "string"       => Parser.STRING pos *)
        | "return"       => Parser.RETURN pos
+	   (* | "while" 		=> Parser.WHILE pos *)
        | _              => Parser.ID (s, pos)
 
  }
@@ -36,16 +39,25 @@ rule Token = parse
   | [`\n` `\012`]       { currentLine := !currentLine+1;
                           lineStartPos :=  getLexemeStart lexbuf
 			                   :: !lineStartPos;
-                          Token lexbuf } (* newlines *)
+                          Token lexbuf } (* newlines *) 
   | [`0`-`9`]+          { case Int.fromString (getLexeme lexbuf) of
                                NONE   => lexerError lexbuf "Bad integer"
                              | SOME i => Parser.NUM (i, getPos lexbuf) }
   | [`a`-`z` `A`-`Z`] [`a`-`z` `A`-`Z` `0`-`9` `_`]*
                         { keyword (getLexeme lexbuf,getPos lexbuf) }
-  | `+`                 { Parser.PLUS (getPos lexbuf) }
+  (*|  `'` `\`?[` ` `!` `#` `$` `%` `&` `'` `(` `)` `*` `+` `,` `-` `.` `/` `:` `;` `<` `=` `>` `?` `[` `]` `^` `{` `}` `|` `~` `a`-`z` `A`-`Z` `0`-`9` ]`'` 
+						{ Parser.CHARCONST (getLexeme lexbuf,getPos lexbuf) } (* added *)
+  |  `"` (`\`?[`` ` ` `!` `#` `$` `%` `&` `'` `(` `)` `*` `+` `,` `-` `.` `/` `:` `;` `<` `=` `>` `?` `[` `]` `^` `{` `}` `|` `~` `a`-`z` `A`-`Z` `0`-`9` ])+`"` 
+						{ Parser.STRINGCONST (getLexeme lexbuf,getPos lexbuf) } *) (* added *)
+  | [`a`-`z` `A`-`Z`]+`*`
+						{ Parser.POINTER (getPos lexbuf) } (* added *)
+  | `+`                 { Parser.PLUS (getPos lexbuf) } 
   | `-`                 { Parser.MINUS (getPos lexbuf) }
   | `<`                 { Parser.LESS (getPos lexbuf) }
   | `=`                 { Parser.ASSIGN (getPos lexbuf) }
+  (*| "=="				{ Parser.EQUAL (getPos lexbuf) } (* added *)
+  | `{`					{ Parser.LBLOCK (getPos lexbuf) } (* added *)
+  | `}`					{ Parser.RBLOCK (getPos lexbuf) } *) (* added *)
   | `(`                 { Parser.LPAR (getPos lexbuf) }
   | `)`                 { Parser.RPAR (getPos lexbuf) }
   | `,`                 { Parser.COMMA (getPos lexbuf) }
