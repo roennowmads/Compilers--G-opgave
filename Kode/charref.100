@@ -1,0 +1,12 @@
+/* charref.100 -- has function that returns char reference */
+
+int main()
+{
+  char *s; int i;
+  i = getint();
+  s = f();
+  return putint(s[i]);
+}
+
+char *f()
+  return "abracadabra";
