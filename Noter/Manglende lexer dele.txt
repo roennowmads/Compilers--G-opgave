@@ -1,6 +1,0 @@
-referencer
-String
-charConst
-equal
-løkker
-blokker
