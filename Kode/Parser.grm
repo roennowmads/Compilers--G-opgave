@@ -68,7 +68,7 @@ Stat :	  Exp SEMICOLON	{ S100.EX $1 }
 	| IF LPAR Exp RPAR Stat ELSE Stat
 			{ S100.IfElse ($3,$5,$7,$1) }
 	| WHILE LPAR Exp RPAR Stat
-			{ S100.IfElse ($3,$5,$1) }
+			{ S100.While ($3,$5,$1) }
 	| RETURN Exp SEMICOLON
 			{ S100.Return ($2,$1) }
 ;
