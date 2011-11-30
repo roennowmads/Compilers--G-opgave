@@ -24,10 +24,10 @@
        | "then"         => Parser.THEN pos
        | "else"         => Parser.ELSE pos
        | "int"          => Parser.INT pos
-	   (*| "char"         => Parser.CHAR pos 
-	   | "string"       => Parser.STRING pos *)
+       | "char"         => Parser.CHAR pos 
+       | "string"       => Parser.STRING pos
        | "return"       => Parser.RETURN pos
-	   (* | "while" 		=> Parser.WHILE pos *)
+       | "while" 		=> Parser.WHILE pos
        | _              => Parser.ID (s, pos)
 
  }
