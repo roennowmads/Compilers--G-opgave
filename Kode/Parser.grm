@@ -3,7 +3,7 @@
 %token <char*(int*int)> CHARCONST
 %token <string*(int*int)> STRINGCONST
 %token <string*(int*int)> POINTER
-%token <(int*int)> IF THEN ELSE INT RETURN WHILE
+%token <(int*int)> IF THEN ELSE INT CHAR RETURN WHILE
 %token <(int*int)> EQUAL
 %token <(int*int)> PLUS MINUS LESS ASSIGN
 %token <(int*int)> LPAR RPAR LBLOCK RBLOCK
