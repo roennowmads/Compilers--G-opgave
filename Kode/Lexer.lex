@@ -49,15 +49,15 @@ rule Token = parse
 						{ Parser.CHARCONST (getLexeme lexbuf,getPos lexbuf) } (* added *)
   |  `"` (`\`?[`` ` ` `!` `#` `$` `%` `&` `'` `(` `)` `*` `+` `,` `-` `.` `/` `:` `;` `<` `=` `>` `?` `[` `]` `^` `{` `}` `|` `~` `a`-`z` `A`-`Z` `0`-`9` ])+`"` 
 						{ Parser.STRINGCONST (getLexeme lexbuf,getPos lexbuf) } (* added *)
-  | [`a`-`z` `A`-`Z`]+`*`
+  | [`a`-`z` `A`-`Z`] [`a`-`z` `A`-`Z` `_` `0`-`9`]* `*`
 						{ Parser.POINTER (getPos lexbuf) } (* added *)
   | `+`                 { Parser.PLUS (getPos lexbuf) } 
   | `-`                 { Parser.MINUS (getPos lexbuf) }
   | `<`                 { Parser.LESS (getPos lexbuf) }
   | `=`                 { Parser.ASSIGN (getPos lexbuf) }
-  (*| "=="				{ Parser.EQUAL (getPos lexbuf) } (* added *)
-  | `{`					{ Parser.LBLOCK (getPos lexbuf) } (* added *)
-  | `}`					{ Parser.RBLOCK (getPos lexbuf) } *) (* added *)
+  | "=="		{ Parser.EQUAL (getPos lexbuf) } (* added *)
+  | `{`			{ Parser.LBLOCK (getPos lexbuf) } (* added *)
+  | `}`			{ Parser.RBLOCK (getPos lexbuf) } (* added *)
   | `(`                 { Parser.LPAR (getPos lexbuf) }
   | `)`                 { Parser.RPAR (getPos lexbuf) }
   | `,`                 { Parser.COMMA (getPos lexbuf) }
