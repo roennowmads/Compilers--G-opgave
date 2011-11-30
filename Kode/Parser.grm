@@ -2,7 +2,7 @@
 %token <int*(int*int)> NUM
 %token <char*(int*int)> CHARCONST
 %token <string*(int*int)> STRINGCONST
-%token <(int*int)> POINTER
+%token <string*(int*int)> POINTER
 %token <(int*int)> IF THEN ELSE INT RETURN WHILE
 %token <(int*int)> EQUAL
 %token <(int*int)> PLUS MINUS LESS ASSIGN
