@@ -45,10 +45,10 @@ rule Token = parse
                              | SOME i => Parser.NUM (i, getPos lexbuf) }
   | [`a`-`z` `A`-`Z`] [`a`-`z` `A`-`Z` `0`-`9` `_`]*
                         { keyword (getLexeme lexbuf,getPos lexbuf) }
-  (*|  `'` `\`?[` ` `!` `#` `$` `%` `&` `'` `(` `)` `*` `+` `,` `-` `.` `/` `:` `;` `<` `=` `>` `?` `[` `]` `^` `{` `}` `|` `~` `a`-`z` `A`-`Z` `0`-`9` ]`'` 
+  |  `'` `\`?[` ` `!` `#` `$` `%` `&` `'` `(` `)` `*` `+` `,` `-` `.` `/` `:` `;` `<` `=` `>` `?` `[` `]` `^` `{` `}` `|` `~` `a`-`z` `A`-`Z` `0`-`9` ]`'` 
 						{ Parser.CHARCONST (getLexeme lexbuf,getPos lexbuf) } (* added *)
   |  `"` (`\`?[`` ` ` `!` `#` `$` `%` `&` `'` `(` `)` `*` `+` `,` `-` `.` `/` `:` `;` `<` `=` `>` `?` `[` `]` `^` `{` `}` `|` `~` `a`-`z` `A`-`Z` `0`-`9` ])+`"` 
-						{ Parser.STRINGCONST (getLexeme lexbuf,getPos lexbuf) } *) (* added *)
+						{ Parser.STRINGCONST (getLexeme lexbuf,getPos lexbuf) } (* added *)
   | [`a`-`z` `A`-`Z`]+`*`
 						{ Parser.POINTER (getPos lexbuf) } (* added *)
   | `+`                 { Parser.PLUS (getPos lexbuf) } 
