@@ -1,0 +1,125 @@
+\title{Godkendelsesopgave - Overs\ae ttere 2011}
+
+\author{
+        Andreas Asp Bock: 061290-2917\\
+        Mads R\o nnow: 1231231231\\
+        Daniel Str\o m: 1231231231
+        }
+\date{\today}
+
+\documentclass[12pt,a4paper,danish]{article}
+\usepackage[danish]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage{multicols}
+%\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{subfloat}
+\usepackage{moreverb}
+\usepackage{ulem}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{tikz-inet}
+\usepackage{graphicx}
+\usepackage[hmargin={1in,1in}]{geometry}
+\usepackage{color}
+\usetikzlibrary{matrix}
+
+
+\usepackage{slashbox}
+\usepackage{amsmath}
+\DeclareGraphicsExtensions{.pdf, .png, .jpg}
+\usepackage{blindtext}
+\usepackage{geometry}
+
+%%%%%%%%%%%%%%%%%%
+\begin{document} %
+\maketitle       %
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand\abstractname{Abstract}%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstract}
+Følgende rapport udgør gruppens svar på Godkendelsesopgaven i kurset Oversættere i studieåret 2011/2012.
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Introduction}%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+Først vil vi gennemgå hver af de filer, vi har redigeret i, med henblik på at forklare hvilke ændringer vi har måtte lave for at kunne oversætte sproget 100.
+Derefter...
+
+Slutteligt vil vi komme med en sammenfatning og ...
+
+% GENERELT:
+% 	Fungerer det som det skal?
+%	Hvorfor? Hvorfor ikke?
+%	Inkluder store ændringer i programteskt i rapporten
+%	Dokumenter kendte mangler
+
+%%%%%%%%%%%%%%%%%%%
+\section*{Lexeren}%
+%%%%%%%%%%%%%%%%%%%
+
+Vi har tilføjet de manglende tokens i lexerens \texttt{parse} funktion. Disse består af \texttt{while}-løkker, blokker (\texttt{\{ }, \texttt{\} }), paranteser, sammenligningsoperatoren,  enkelttegn (\texttt{charConst}) strenge (\texttt{stringConst}) samt referencer (pointere). Da \texttt{while} er et keyword har vi implementeret det ved at lave endnu en case i funktionen \texttt{keyword} i headeren.
+Hvorfor dette fungerer ser på i næste sektion om parseren.
+
+%%%%%%%%%%%%%%%%%%%%
+\section*{Parseren}%
+%%%%%%%%%%%%%%%%%%%%
+% Hvordan er grammatikken gjort entydig?
+% Beskrivelse af ikke-åbenlyse løsninger
+% Opbygning af abstrakt syntax
+% MosML-yacc må ikke rapportere konflikter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Type-chekeren}%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+% Hvordan checker vi typer?
+% figur 6.2, 7.3!
+
+%%%%%%%%%%%%%%%%%%%%
+\section*{Compiler}%
+%%%%%%%%%%%%%%%%%%%%
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Fejlhåndtering}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%
+\section*{Tests}%
+%%%%%%%%%%%%%%%%%
+% Udtømmende?
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\section*{Konklusion}%
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\bibliographystyle{abbrv}
+\bibliography{main}
+\end{document}
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.4]{/home/andreas/LaTeX_Pics/OR/Assig2/Output(24).png} 
+\caption{\textit{R} output for the transportation problem.} 
+\end{center}
+\end{figure}
+
+
+
+
+
+
+
