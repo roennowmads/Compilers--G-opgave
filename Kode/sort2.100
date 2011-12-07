@@ -1,0 +1,43 @@
+/* sort2.100 -- bubble sort of integer array using pointer arithemtic */
+/* reads a number N and then N numbers */
+/* then prints these numbers in sorted order */
+
+int main()
+{
+  int n, i, *a;
+
+  n = getint();
+  a = walloc(n);
+  i = 0;
+  while (i<n) {
+    a[i] = getint();
+    i = i+1;
+  }
+  sort(a, n);
+  i = 0;
+  while (i<n) {
+    putint(a[i]);
+    i = i+1;
+  }
+  return 0;
+}
+
+int sort(int *a, n)
+{
+  int t, *b, *c;
+
+  c = a + n - 1;
+  while (a<c) {
+    b = a;
+    while (b<c) {
+      if (b[1] < b*) {
+        t = b*;
+	b* = b[1];
+	b[1] = t;
+      }
+      b = b+1;
+    }
+    c = c-1;
+  }
+  return 0;
+}

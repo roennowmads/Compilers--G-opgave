@@ -1,0 +1,7 @@
+/* copy.100 -- copies 14 characters from input to output */
+
+int main()
+{
+  putstring(getstring(14));
+  return 0;
+}

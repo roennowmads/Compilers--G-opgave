@@ -1,0 +1,13 @@
+/* error12.100 */
+/* Non-C escape sequence: \q */
+
+int main()
+{
+  return f("ab\qc",'a');
+}
+
+int f(char *x; char y)
+{
+  x - y;
+  return 0;
+}

@@ -1,0 +1,10 @@
+/* error08.100 */
+/* Comparing pointer and integer */
+
+int main()
+{
+  int *a;
+  a = walloc(100);
+  100 < a;
+  return 0;
+}

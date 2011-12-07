@@ -1,0 +1,103 @@
+%token <string*(int*int)> ID
+%token <int*(int*int)> NUM
+%token <char*(int*int)> CHARCONST
+%token <string*(int*int)> STRINGCONST
+%token <string*(int*int)> POINTER
+%token <(int*int)> IF THEN ELSE INT CHAR RETURN WHILE
+%token <(int*int)> EQUAL
+%token <(int*int)> PLUS MINUS LESS ASSIGN
+%token <(int*int)> LPAR RPAR LBLOCK RBLOCK
+%token <(int*int)> COMMA SEMICOLON EOF
+
+%right ELSE
+%right ASSIGN
+%left LESS
+%left PLUS MINUS
+
+%start Prog
+%type <S100.Prog> Prog
+%type <S100.FunDec list> FunDecs
+%type <S100.Type> Type
+%type <S100.Sid> Sid
+%type <S100.Sid list> Sids
+%type <S100.Dec> Dec
+%type <S100.Dec list> Decs Decs1
+%type <S100.Exp> Exp
+%type <S100.Exp list> Exps Exps1
+%type <S100.Lval> Lval
+%type <S100.Stat> Stat
+
+%%
+
+Prog :	  FunDecs EOF	{ $1 }
+;
+
+
+FunDecs : Type Sid LPAR Decs RPAR Stat FunDecs
+			{ ($1, $2, $4, $6, $3) :: $7 }
+	|		{ [] }
+;
+
+Type :	  INT		{ S100.Int $1 }
+     |    CHAR          { S100.Char $1 }
+;
+
+Decs :	  Decs1 Dec	{ $1 @ [$2] }
+	|		{ [] }
+;
+
+Decs1 :	  Decs1 Dec SEMICOLON
+			{ $1 @ [$2] }
+	|		{ [] }
+;
+
+Dec :	  Type Sids	{ ($1, $2) }
+;
+
+Sid :	  ID		{ S100.Val $1 }
+    |     POINTER       { S100.Ref $1 }
+;
+
+Sids :	  Sid COMMA Sids
+			{ $1 :: $3 }
+	| Sid		{ [$1] }
+
+Stat :	  Exp SEMICOLON	{ S100.EX $1 }
+	| IF LPAR Exp RPAR %prec ELSE Stat
+			{ S100.If ($3,$5,$1) }
+	| IF LPAR Exp RPAR Stat ELSE Stat
+			{ S100.IfElse ($3,$5,$7,$1) }
+	| WHILE LPAR Exp RPAR Stat
+			{ S100.While ($3,$5,$1) }
+	| RETURN Exp SEMICOLON
+			{ S100.Return ($2,$1) }
+;
+
+Exp :	  NUM		{ S100.NumConst $1 }
+        | CHARCONST     { S100.CharConst $1 }
+        | STRINGCONST   { S100.StringConst $1 }
+	| Lval		{ S100.LV $1 }
+	| Lval ASSIGN Exp
+			{ S100.Assign ($1,$3,$2) }
+	| Exp PLUS Exp	{ S100.Plus ($1, $3, $2) }
+	| Exp MINUS Exp	{ S100.Minus ($1, $3, $2) }
+	| Exp EQUAL Exp	{ S100.Equal ($1, $3, $2) }
+	| Exp LESS Exp	{ S100.Less ($1, $3, $2) }
+	| ID LPAR Exps RPAR
+			{ S100.Call (#1 $1, $3, $2) }
+	| LPAR Exp RPAR
+			{ $2 }
+	| LBLOCK Decs1 Stat RBLOCK
+			{ S100.Block ($2, $3, $1) }
+;
+
+Exps :			{ [] }
+	| Exps1		{ $1 }
+;
+
+Exps1:	  Exp		{ [$1] }
+	| Exp COMMA Exps
+			{ $1 :: $3 }
+
+Lval :	  ID		{ S100.Var $1 }
+;

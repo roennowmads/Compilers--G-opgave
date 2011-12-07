@@ -1,0 +1,8 @@
+/* error13.100 */
+/* No return statement in all paths */
+
+int main()
+{
+  if (1<2) return 1;
+  else {}
+}
