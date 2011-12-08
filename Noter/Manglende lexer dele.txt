@@ -1,0 +1,17 @@
+Mangler:
+
+PARSER/S100:
+
+  Skriv under spørgsmålene hvis I kender svaret, tak! :)
+
+  - Comments? Gælder også for Parseren.
+  - Der står "Kun tegnspecifikationer, der er lovlige i C, er tilladt.". Mener de characters?
+  - Præcedens ordnes ved at rangere dem i Parser.grm således at dem med stærkest præcedens er defineret nederst og jo
+    tættere vi kommer til starten af filen desto svagere binder de. Confirm/Deny?
+  - Kompilering af Parser.sml giver følgende fejl som jeg ikke kan fange:
+            root@bock:/home/bock/100_files/Kode# /root/mosml/bin/mosmlc -c Parser.sml 
+            File "Parser.sml", line 226, characters 2-11:
+            ! ( S100.Char (d__1__) ) end : S100.Type))
+            !   ^^^^^^^^^
+            ! Unbound value component: S100.Char
+    kan I fatte den...?
