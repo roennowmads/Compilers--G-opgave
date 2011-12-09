@@ -17,3 +17,5 @@ PARSER/S100:
     Nevermind... Jeg skulle lige mosmlyac'e først, så får jeg det samme.
     mosmlyac giver 8 shift/reduce conflicts, det lyder som om fejlen ligger der.
   - Vi mangler escape sekvenser? Hvordan håndterer vi dette..?
+
+      Det kigger vi da på i dag! :)
