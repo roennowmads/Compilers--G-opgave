@@ -14,4 +14,6 @@ PARSER/S100:
             ! Unbound value component: S100.Char
     kan I fatte den...?
     Jeg får ikke nogen fejl, den kompilerer fint.
+    Nevermind... Jeg skulle lige mosmlyac'e først, så får jeg det samme.
+    mosmlyac giver 8 shift/reduce conflicts, det lyder som om fejlen ligger der.
   - Vi mangler escape sekvenser? Hvordan håndterer vi dette..?
