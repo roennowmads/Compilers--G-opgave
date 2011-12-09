@@ -13,5 +13,4 @@ PARSER/S100:
             !   ^^^^^^^^^
             ! Unbound value component: S100.Char
     kan I fatte den...?
-   Jeg får ikke nogen fejl der, den kompilerer fint. 
   - Vi mangler escape sekvenser? Hvordan håndterer vi dette..?
