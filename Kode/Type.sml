@@ -87,7 +87,9 @@ struct
     | S100.Return (e,p) => ()
 
   fun checkFunDec (t,sf,decs,body,p) ftable =
-        checkStat body (checkDecs decs) ftable
+	if (CHECK RETURN) 
+	then checkStat body (checkDecs decs) ftable
+	else raise Error ("Function must have reachable return", p)
 
   fun getFuns [] ftable = ftable
     | getFuns ((t,sf,decs,_,p)::fs) ftable =
