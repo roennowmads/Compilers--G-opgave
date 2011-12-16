@@ -72,6 +72,11 @@ struct
     | checkDecs ((t,sids)::ds) =
         extend (List.rev sids) (convertType t) (checkDecs ds)
 
+  fun checkStats [] = []
+    | checkStats ((t, sids)::ds) =
+	checkStat t
+	checkStats ds
+
   fun checkStat s vtable ftable =
     case s of
       S100.EX e => (checkExp e vtable ftable; ())
@@ -84,7 +89,22 @@ struct
 	then (checkStat s1 vtable ftable;
 	      checkStat s2 vtable ftable)
 	else raise Error ("Condition should be integer",p)
+    | S100.Block (decs, stats) => checkDecs decs
+				  checkStats stats
     | S100.Return (e,p) => ()
+
+  fun hasReturn s =
+     S100.IfElse (e,s1,s2,p) =>
+        if hasReturn s1 = true
+	then 
+	   if hasReturn s2 = trye
+	   then true
+	   relse raise Error("If has return but else doesnt", p)
+    | S100.Return (e,p) => true
+    | _ => false
+
+  fun checkFunReturn body =
+	if hasReturn body
 
   fun checkFunDec (t,sf,decs,body,p) ftable =
 	if (CHECK RETURN) 
